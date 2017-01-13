@@ -89,3 +89,4 @@ ENV/
 .ropeproject
 
 workflows/my_launchpad.yaml
+workflows/*_wcreds*.*
