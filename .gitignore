@@ -87,3 +87,5 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+workflows/my_launchpad.yaml

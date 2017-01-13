@@ -1,0 +1,8 @@
+name: Mendel FireWorker
+category: ''
+#query: '{"spec.snl.about.remarks": {"$ne": "MP user submission"}, "spec.mpsnl.about.remarks": {"$ne": "MP user submission"}}'
+query: '{"spec.snl.about.remarks": {"$ne": "Heusler ABC2 phases"}, "spec.mpsnl.about.remarks": {"$ne": "Heusler ABC2 phases"}}'
+#query: '{}'
+env:
+    mpi_cmd: srun
+    vasp_cmd: /usr/common/usg/vasp/5.4.1/bin/vasp

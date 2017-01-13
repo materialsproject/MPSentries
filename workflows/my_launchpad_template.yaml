@@ -1,0 +1,16 @@
+host: localhost #mongodb01.nersc.gov
+port: 57001 #27017
+name: <db-name> # get from P. Huck
+username: <username> # get read creds from P. Huck
+password: <password>
+#logdir: /Users/patrick/gitrepos/mp/MPWorks/logs
+strm_lvl: DEBUG
+user_indices:
+  - spec.snlgroup_id
+  - spec.task_type
+wf_user_indices:
+  - metadata.nelements
+  - metadata.elements
+  - metadata.submission_id
+  - metadata.reduced_cell_formula_abc
+  - metadata.formula
