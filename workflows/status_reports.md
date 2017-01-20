@@ -1,3 +1,58 @@
+### 2018-01-19
+
+#### user-submitted Workflows
+
+4017 RUNNING workflows (13.2%)  
+4850 FIZZLED workflows (16.0%)  
+19000 READY workflows (62.6%)  
+2434 COMPLETED workflows (8.0%)  
+44 DEFUSED workflows (0.1%)  
+=> 30345 workflows in total
+
+#### Kitchaev Workflows
+
+- 41/77 COMPLETED (24 RUNNING, 12 FIZZLED)
+- `lpad reignite_fws -i 1563363` (was defused, reason unknown)
+- `lpad admin unlock -i 1563108 1563186 1563158` (fizzled due to locked DB)
+- `lpad rerun_fws -i 1563108, 1563186, 1563158` -> all completed
+- fizzled workflow 1563973 (possibly same for 1563457, 1563651):
+    ```
+    1563972 contains relax1 and relax2 which are unconverged VASP runs with
+    Electronic convergence reached: True.
+    Ionic convergence reached: False.
+    ```
+- 27 RUNNING:
+    ```
+    1562996, 1563363, 1562990, 1563159, 1563372, 1563308, 1563287, 1563939, 1563951, 
+    1563955, 1563969, 1563977, 1563983, 1564008, 1564009, 1652411, 1563351, 1563402, 
+    1563020, 1563187, 1563390, 1563384, 1563366, 1563396, 1564192, 1563408, 1563454
+    ```
+- 24 RUNNING workflows (31.2%)
+  12 FIZZLED workflows (15.6%)
+  41 COMPLETED workflows (53.2%)
+  77 workflows in total
+
+####  Piezoelectricity Workflows
+
+- remark: {Ti,Zr,Hf}-Zn-N piezoelectricity study
+- 11/15 COMPLETED (4 READY)
+- READY: 1583655, 1583643, 1583631, 1583607
+
+#### Heusler Phases Workflows
+
+- remark: Heusler ABC2 phases
+- 5/2371 COMPLETED (1576 FIZZLED)
+
+#### ICSD 2015 Workflows
+
+- remark: new ICSD batch
+- 800/1908 COMPLETED (558 FIZZLED)
+
+#### Pauling File Workflows
+
+- remark: Pauling file
+- 26/23370 COMPLETED (18k READY)
+
 ### 2017-01-10
 
 - 30241 user-submitted workflows
@@ -21,7 +76,7 @@
   3951
   ```
 
- - Errors for Kitchaev Workflows:
+#### Kitchaev Workflows:
 
   ```
   3      1563651      ValueError -- DB insertion successful, but don't know how to     -- vasp_io_tasks.py#240
