@@ -1,4 +1,9 @@
-### 2018-01-19
+### 2017-01-20
+
+- start remaining 4 READY workflows for Piezoelectricity (see 2017-01-19)
+- continue 24 RUNNING workflows for Kitchaev (43 COMPLETED, 10 FIZZLED)
+
+### 2017-01-19
 
 #### user-submitted Workflows
 
@@ -16,21 +21,12 @@
 - `lpad admin unlock -i 1563108 1563186 1563158` (fizzled due to locked DB)
 - `lpad rerun_fws -i 1563108, 1563186, 1563158` -> all completed
 - fizzled workflow 1563973 (possibly same for 1563457, 1563651):
+
     ```
     1563972 contains relax1 and relax2 which are unconverged VASP runs with
     Electronic convergence reached: True.
     Ionic convergence reached: False.
     ```
-- 27 RUNNING:
-    ```
-    1562996, 1563363, 1562990, 1563159, 1563372, 1563308, 1563287, 1563939, 1563951, 
-    1563955, 1563969, 1563977, 1563983, 1564008, 1564009, 1652411, 1563351, 1563402, 
-    1563020, 1563187, 1563390, 1563384, 1563366, 1563396, 1564192, 1563408, 1563454
-    ```
-- 24 RUNNING workflows (31.2%)
-  12 FIZZLED workflows (15.6%)
-  41 COMPLETED workflows (53.2%)
-  77 workflows in total
 
 ####  Piezoelectricity Workflows
 
