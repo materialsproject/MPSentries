@@ -1,3 +1,9 @@
+### 2017-01-23
+
+- 48 COMPLETED Kitchaev workflows, others ~70% done
+- Piezeoelectric 50-70% done
+
+
 ### 2017-01-20
 
 - start remaining 4 READY workflows for Piezoelectricity (see 2017-01-19)
