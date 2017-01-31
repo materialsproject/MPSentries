@@ -1,8 +1,57 @@
+### 2017-01-30
+
+#### Kitchaev Workflows
+
+- 63/77 COMPLETED Kitchaev Workflows
+- 10 FIZZLED
+  * VASP db insertion [1563973, 1563457, 1563651]: "successful, but don't know how to continue"
+  * GGA+U optimize structure (2x) [1563253, 1563247]: MaxErrors
+  * GGA+U static v2 [1563654]: PositiveEnergyErrorHandler
+  * GGA optimize structure (2x) [1563137, 1562957]: FrozenJobErrorHandler / VaspRunXMLValidator
+  * GGA+U band structure v2 [1564136]: VaspRunXMLValidator
+  * Controller: add Electronic Structure v2 [1563363]: "KeyError: 'analysis'"
+- re-running the FIZZLED GGA fireworks on Mendel
+- 1 RUNNING [1563287] for more than 2 days -> increased walltime
+- 3 PAUSED [1652670, 1652672, 1652674] keep generating dynamic fireworks due to un-converged SO calculation
+
+
+### 2017-01-27
+
+- 62/77 COMPLETED Kitchaev workflows
+- 3 workflows (1652670, 1652672, 1652674) keep generating dynamic fireworks
+  due to un-converged SO calculation -> PAUSED
+
+### 2017-01-26
+
+- 54/77 COMPLETED Kitchaev workflows
+
+### 2017-01-25
+
+- 1 READY user-submitted Add-to-SNL task -> COMPLETED
+- 50/77 COMPLETED Kitchaev workflows
+
+### 2017-01-24
+
+#### incomplete user-submitted "Add to SNL tasks"
+
+- unlock and rerun 91 tasks (excl. ICSD, Pauling File, and Heusler submissions) 
+  -> permanently include in query to get duplicate checking done during debugging
+- no tasks in states other than READY
+- All 91 tasks COMPLETED
+
+####  Piezoelectricity Workflows
+
+all workflows COMPLETED:  
+http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22metadata.submission_group_id%22%3A+118151%7D
+
+#### Kitchaev Workflows
+
+49/77 COMPLETED
+
 ### 2017-01-23
 
 - 48 COMPLETED Kitchaev workflows, others ~70% done
 - Piezeoelectric 50-70% done
-
 
 ### 2017-01-20
 
