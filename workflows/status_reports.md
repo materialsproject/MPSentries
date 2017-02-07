@@ -1,3 +1,16 @@
+### 2017-02-01
+
+- 66/77 COMPLETED Kitchaev Workflows; 2 RUNNING
+- Mark McAdon (DOW): Re2O7, 1370872 RUNNING
+- George Yumnam: 1566138 FIZZLED (also 1566120, 1566104, 1566099, 1567504, 1567491) -> RE-RUNNING
+  * 1566099 FIZZLED
+- http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22nodes%22%3A%7B%22%24in%22%3A%5B1370872%2C1566138%2C1566120%2C+1566104%2C+1566099%2C+1567504%2C+1567491%2C1563287%2C+1652717%5D%7D%7D
+
+
+### 2017-01-31
+
+65/77 COMPLETED Kitchaev Workflows; 1652735 PAUSED (see 2017-01-30)
+
 ### 2017-01-30
 
 #### Kitchaev Workflows
