@@ -1,3 +1,17 @@
+### 2017-02-07
+
+#### Kitchaev Workflows
+- 66/77 COMPLETED Workflows
+- 6 FIZZLED
+- 1 RUNNING
+- 4 PAUSED
+
+#### Heusler ABC2 Phase
+- 5/2371 COMPLETED (0.2%)
+- 1576/2371 FIZZLED (66.5%)
+- 43/2371 RUNNING (1.8%)
+- 747/2371 READY (31.5%)
+
 ### 2017-01-30
 
 #### Kitchaev Workflows
