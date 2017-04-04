@@ -1,4 +1,61 @@
+### 2017-04-03
+
+#### Hark Lee - VW Solid Solution Metal
+
+304 RUNNING workflows (24.8%)
+16 FIZZLED workflows (1.3%)
+813 READY workflows (66.4%)
+81 COMPLETED workflows (6.6%)
+10 RESERVED workflows (0.8%)
+1224 workflows in total
+
+#### Silvana Botti - Perovskite Structures (89070)
+
+1 RUNNING workflows (0.6%)
+59 FIZZLED workflows (35.1%)
+108 COMPLETED workflows (64.3%)
+168 workflows in total
+
+#### Ram Balachandran - Fuel Cells
+
+6 RUNNING workflows (9.2%)
+3 FIZZLED workflows (4.6%)
+56 COMPLETED workflows (86.2%)
+65 workflows in total
+
+-> `lpad rerun_fws -i 1653368 1653198`
+
+#### Mark McAdon - Re2O7
+
+http://fireworks.dash.materialsproject.org/wf/1370872 -> almost completed
+
+#### DOS shift for mp-3318
+
+https://github.com/materialsproject/materials_django/issues/419#issuecomment-287863637  
+http://fireworks.dash.materialsproject.org/wf/417029
+
+
+### 2017-03-03
+
+submitted 65 new structures from Balachandran, Janakiraman
+
+remark: proton conducting materials for fuel cells
+
+http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remarks%22%3A+%22proton+conducting+materials+for+fuel+cells%22%7D&wf_query=
+
+
+### 2017-02-17
+
+- fworker query (443 fireworks today):
+
+{"$or": [ {"spec.snl.about.remarks": {"$in": ["MP user submission"], "$nin": ["new ICSD batch", "Pauling file", "Heusler ABC2 phases"]}}, {"spec.mpsnl.about.remarks": {"$in": ["MP user submission"], "$nin": ["new ICSD batch", "Pauling file", "Heusler ABC2 phases"]}} ], "state": "READY"}
+
+### 2017-02-16
+
+- completed 36 READY user-submitted Add-to-SNL tasks
+
 ### 2017-02-14
+
 #### Kitchaev Workflows
 - 66/77 COMPLETED (85.7%)
 - 6/77 FIZZLED (7.8%)
