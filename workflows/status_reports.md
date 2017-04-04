@@ -1,6 +1,7 @@
 ### 2017-04-04
 
 - Re2O7 completed, http://fireworks.dash.materialsproject.org/wf/1370872
+- GGA Uniform v2 rerun for mp-3318 completed, http://fireworks.dash.materialsproject.org/wf/417029
 
 ### 2017-04-03
 
