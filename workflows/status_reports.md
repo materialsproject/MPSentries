@@ -1,3 +1,8 @@
+### 2017-04-05
+
+- prioritizing ICSD calculations
+- all but two Balachandran workflows completed
+
 ### 2017-04-04
 
 - Re2O7 completed, http://fireworks.dash.materialsproject.org/wf/1370872
