@@ -4,6 +4,16 @@
 - all but two Balachandran workflows completed
 - completed Sunil's workflow (duplicates) http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remarks%22%3A+%22MP+user+submission%22%2C+%22spec.snl.about.authors.email%22%3A+%22sunil.night%40gmail.com%22%7D&wf_query=%7B%22metadata.reduced_cell_formula%22%3A+%22V2O5%22%7D
 
+#### ICSD 2015
+
+```
+493 RUNNING workflows (25.8%)
+558 FIZZLED workflows (29.2%)
+838 COMPLETED workflows (43.9%)
+19 DEFUSED workflows (1.0%)
+1908 workflows in total
+```
+
 ### 2017-04-04
 
 - Re2O7 completed, http://fireworks.dash.materialsproject.org/wf/1370872
