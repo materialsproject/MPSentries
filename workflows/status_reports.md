@@ -2,6 +2,7 @@
 
 - prioritizing ICSD calculations
 - all but two Balachandran workflows completed
+- starting Sunil's workflow http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remarks%22%3A+%22MP+user+submission%22%2C+%22spec.snl.about.authors.email%22%3A+%22sunil.night%40gmail.com%22%7D&wf_query=%7B%22metadata.reduced_cell_formula%22%3A+%22V2O5%22%7D
 
 ### 2017-04-04
 
