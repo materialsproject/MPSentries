@@ -1,3 +1,21 @@
+### 2017-04-06
+
+- Balachandran debugging HgMnO3; all others completed
+- identified all fw_id's for DOS offset rerun; encoded in fw_query
+
+#### ICSD 2015
+
+```
+488 RUNNING workflows (25.6%)
+558 FIZZLED workflows (29.2%)
+843 COMPLETED workflows (44.2%)
+19 DEFUSED workflows (1.0%)
+1908 workflows in total
+```
+
+- rerunning 31 fizzled Add to SNL tasks -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=%7B%22fw_id%22%3A+%7B%22%24in%22%3A+%5B1453147%2C+1453155%2C+1453159%2C+1453307%2C+1453451%2C+1453455%2C+1453459%2C+1455075%2C+1455079%2C+1557758%2C+1558010%2C+1558090%2C+1558246%2C+1558334%2C+1558406%2C+1558414%2C+1558418%2C+1558730%2C+1558742%2C+1558754%2C+1559528%2C+1559718%2C+1559722%2C+1559756%2C+1559768%2C+1559808%2C+1559816%2C+1559824%2C+1559972%2C+1560012%5D%7D%7D&wf_query=)
+- rerunning 390 fizzled GGA optimize tasks
+
 ### 2017-04-05
 
 - prioritizing ICSD calculations
