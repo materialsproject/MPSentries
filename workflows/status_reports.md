@@ -1,3 +1,20 @@
+### 2017-04-07
+
+- DOS offset fix: all but two workflows done -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22nodes%22%3A%7B%22%24in%22%3A%5B517856%2C914444%5D%7D%7D)
+- petretto and montoyjh to matgen_low queue
+- Weike: 457 new ICSD 2016 Structures; icsd_id's issue?
+
+#### ICSD 2015/2016
+
+```
+1037 RUNNING workflows (43.9%)
+198 FIZZLED workflows (8.4%)
+991 COMPLETED workflows (41.9%)
+117 RESERVED workflows (5.0%)
+20 DEFUSED workflows (0.8%)
+2363 workflows in total
+```
+
 ### 2017-04-06
 
 - Balachandran debugging HgMnO3; all others completed
