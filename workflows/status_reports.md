@@ -1,3 +1,11 @@
+### 2017-04-12
+
+- start running non-batch submissions on XSEDE -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=%7B%22state%22%3A%22READY%22%2C%22%24and%22%3A+%5B%7B%22%24or%22%3A+%5B%7B%22spec.snl.about.remarks%22%3A+%7B%22%24in%22%3A+%5B%22MP+user+submission%22%5D%2C+%22%24nin%22%3A+%5B%22new+ICSD+batch%22%2C+%22Pauling+file%22%2C+%22Heusler+ABC2+phases%22%2C+%22proton+conducting+materials+for+fuel+cells%22%2C+%22solid+solution+metal%22%5D%7D%7D%2C+%7B%22spec.mpsnl.about.remarks%22%3A+%7B%22%24in%22%3A+%5B%22MP+user+submission%22%5D%2C+%22%24nin%22%3A+%5B%22new+ICSD+batch%22%2C+%22Pauling+file%22%2C+%22Heusler+ABC2+phases%22%2C+%22proton+conducting+materials+for+fuel+cells%22%2C+%22solid+solution+metal%22%5D%7D%7D%5D%7D%2C+%7B%22%24or%22%3A+%5B%7B%22spec.prev_vasp_dir%22%3A+%7B%22%24exists%22%3A+0%7D%7D%2C+%7B%22spec.prev_vasp_dir%22%3A+%7B%22%24regex%22%3A+%22%2Foasis%2F%22%7D%7D%5D%7D%5D%7D&wf_query=)
+- NERSC [RUNNING/RESERVED/READY/WAITING]:
+  * VW Hark [0/0/652/0] -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remarks%22%3A+%22solid+solution+metal%22%7D&wf_query=%7B%22state%22%3A+%7B%22%24ne%22%3A+%22COMPLETED%22%7D%7D)
+  * ICSD Weike [23/263/18/0] -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=%7B%22%24or%22%3A+%5B%7B%22spec.snl.about.remarks%22%3A+%22new+ICSD+batch%22%7D%2C+%7B%22spec.mpsnl.about.remarks%22%3A+%22new+ICSD+batch%22%7D%5D%7D&wf_query=%7B%22state%22%3A+%7B%22%24ne%22%3A+%22COMPLETED%22%7D%7D)
+  * DOS offset fix [1/2/43/99] -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22nodes%22%3A%7B%22%24in%22%3A%5B67421%2C+172370%2C+175284%2C+273937%2C+321886%2C+329996%2C+366016%2C+367920%2C+271169%2C+271147%2C+269713%2C+280006%2C+279952%2C+318416%2C+427216%2C+474983%2C+477556%2C+486236%2C+507462%2C+469206%2C+543541%2C+544081%2C+655821%2C+655853%2C+676957%2C+697564%2C+653577%2C+1148100%2C+657911%2C+681304%2C+667056%2C+670679%2C+681135%2C+691009%2C+718861%2C+685397%2C+714229%2C+714688%2C+639588%2C+640899%2C+1081308%2C+1081809%2C+1086911%2C+902977%2C+897375%2C+915719%5D%7D%7D)
+
 ### 2017-04-11
 
 - continuing with Hark's RUNNING workflows
@@ -92,6 +100,8 @@
 108 COMPLETED workflows (64.3%)
 168 workflows in total
 ```
+
+[LINK](http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22metadata.submission_group_id%22%3A89070%2C%22state%22%3A%7B%22%24ne%22%3A%22COMPLETED%22%7D%7D)
 
 #### Ram Balachandran - Fuel Cells
 
