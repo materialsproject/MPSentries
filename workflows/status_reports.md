@@ -116,11 +116,7 @@ http://fireworks.dash.materialsproject.org/wf/417029
 
 ### 2017-03-03
 
-submitted 65 new structures from Balachandran, Janakiraman
-
-remark: proton conducting materials for fuel cells
-
-http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remarks%22%3A+%22proton+conducting+materials+for+fuel+cells%22%7D&wf_query=
+submitted 65 new structures from Balachandran, Janakiraman with remark "proton conducting materials for fuel cells" -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remarks%22%3A+%22proton+conducting+materials+for+fuel+cells%22%7D&wf_query=)
 
 
 ### 2017-02-17
@@ -169,7 +165,7 @@ http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remark
 - Mark McAdon (DOW): Re2O7, 1370872 RUNNING
 - George Yumnam: 1566138 FIZZLED (also 1566120, 1566104, 1566099, 1567504, 1567491) -> RE-RUNNING
   * 1566099 FIZZLED
-- http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22nodes%22%3A%7B%22%24in%22%3A%5B1370872%2C1566138%2C1566120%2C+1566104%2C+1566099%2C+1567504%2C+1567491%2C1563287%2C+1652717%5D%7D%7D
+- [LINK](http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22nodes%22%3A%7B%22%24in%22%3A%5B1370872%2C1566138%2C1566120%2C+1566104%2C+1566099%2C+1567504%2C+1567491%2C1563287%2C+1652717%5D%7D%7D)
 
 ### 2017-01-31
 
@@ -218,8 +214,7 @@ http://fireworks.dash.materialsproject.org/?fw_query=%7B%22spec.snl.about.remark
 
 ####  Piezoelectricity Workflows
 
-all workflows COMPLETED:  
-http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22metadata.submission_group_id%22%3A+118151%7D
+all workflows COMPLETED -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=&wf_query=%7B%22metadata.submission_group_id%22%3A+118151%7D)
 
 #### Kitchaev Workflows
 
