@@ -1,3 +1,22 @@
+### 2017-05-10
+
+- ~60k VASP DB insertion tasks to rerun to save projections; 1300 done, additional 3000 queued
+- all USC submissions done; fixing final DB insertion for 3-layer structures
+- VW Hark submissions duplicate checking?
+- DOS offset fix basically all done
+
+#### new ICSD batch
+
+```
+341 RUNNING workflows (11.9%)
+313 FIZZLED workflows (11.0%)
+1970 COMPLETED workflows (69.0%)
+117 RESERVED workflows (4.1%)
+116 DEFUSED workflows (4.1%)
+2857 workflows in total
+```
+
+
 ### 2017-04-12
 
 - start running non-batch submissions on XSEDE -> [LINK](http://fireworks.dash.materialsproject.org/?fw_query=%7B%22state%22%3A%22READY%22%2C%22%24and%22%3A+%5B%7B%22%24or%22%3A+%5B%7B%22spec.snl.about.remarks%22%3A+%7B%22%24in%22%3A+%5B%22MP+user+submission%22%5D%2C+%22%24nin%22%3A+%5B%22new+ICSD+batch%22%2C+%22Pauling+file%22%2C+%22Heusler+ABC2+phases%22%2C+%22proton+conducting+materials+for+fuel+cells%22%2C+%22solid+solution+metal%22%5D%7D%7D%2C+%7B%22spec.mpsnl.about.remarks%22%3A+%7B%22%24in%22%3A+%5B%22MP+user+submission%22%5D%2C+%22%24nin%22%3A+%5B%22new+ICSD+batch%22%2C+%22Pauling+file%22%2C+%22Heusler+ABC2+phases%22%2C+%22proton+conducting+materials+for+fuel+cells%22%2C+%22solid+solution+metal%22%5D%7D%7D%5D%7D%2C+%7B%22%24or%22%3A+%5B%7B%22spec.prev_vasp_dir%22%3A+%7B%22%24exists%22%3A+0%7D%7D%2C+%7B%22spec.prev_vasp_dir%22%3A+%7B%22%24regex%22%3A+%22%2Foasis%2F%22%7D%7D%5D%7D%5D%7D&wf_query=)
