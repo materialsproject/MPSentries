@@ -1,7 +1,7 @@
 ### 2017-05-10
 
-- ~60k VASP DB insertion tasks to rerun to save projections; 1300 done, additional 3000 queued
-- all USC submissions done; fixing final DB insertion for 3-layer structures
+- ~60k VASP DB insertion tasks to rerun to save projections; 1300 done, additional 3000 queued -> DONE; queueing more ...
+- all USC submissions done; fixing final DB insertion for 3-layer structures -> DONE; looking at remaining ~10 structures
 - VW Hark submissions duplicate checking?
 - DOS offset fix basically all done
 
