@@ -1,11 +1,16 @@
+### 2017-05-11
+
+- all but two USC calculations DONE
+- defused Hark's workflows with >20 nodes to avoid endless duplicate checking
+
 ### 2017-05-10
 
 - ~60k VASP DB insertion tasks to rerun to save projections; 1300 done, additional 3000 queued  
-  -> DONE; queueing more ...
+  -> DONE; queued ~10k
 - all USC submissions done; fixing final DB insertion for 3-layer structures  
   -> DONE; looking at remaining ~10 structures -> Add to SNL tasks fixed and rerun; all queued.
 - VW Hark submissions duplicate checking?
-- DOS offset fix basically all done
+- DOS offset fix basically all DONE
 - continue new ICSD over night
 
 #### new ICSD batch
