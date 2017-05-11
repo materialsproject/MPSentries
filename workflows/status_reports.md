@@ -1,6 +1,7 @@
 ### 2017-05-11
 
-- all but two USC calculations DONE
+- all 146 3-layer USC calculations DONE
+- working through VASP db insertion for projections
 - defused Hark's workflows with >20 nodes to avoid endless duplicate checking
 
 ### 2017-05-10
