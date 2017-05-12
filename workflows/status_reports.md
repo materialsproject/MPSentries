@@ -3,6 +3,7 @@
 - all 146 3-layer USC calculations DONE
 - working through VASP db insertion for projections
 - defused Hark's workflows with >20 nodes to avoid endless duplicate checking
+- paused all "add Electronic Structure" controllers for Hark's submissions; 1116 fireworks ready
 
 ### 2017-05-10
 
