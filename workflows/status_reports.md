@@ -1,3 +1,14 @@
+### 2017-05-15
+
+- started running 666 USC 4-layer structures
+- cleaned up Hark VW workflows and extracted meaningful statistics
+
+#### Hark VW
+
+```
+u'COMPLETED': 1614, u'DEFUSED': 14, u'FIZZLED': 67, u'PAUSED': 40, u'READY': 594, u'RESERVED': 5, u'WAITING': 12
+```
+
 ### 2017-05-11
 
 - all 146 3-layer USC calculations DONE
