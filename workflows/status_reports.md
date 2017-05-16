@@ -2,6 +2,7 @@
 
 - started running 666 USC 4-layer structures
 - cleaned up Hark VW workflows and extracted meaningful statistics
+- 6368 VASP db insertions out of 58459 uniform tasks rerun (for projections)
 
 #### Hark VW
 
