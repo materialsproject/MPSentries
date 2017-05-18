@@ -1,3 +1,24 @@
+### 2017-05-18
+
+#### USC 4-layers
+
+```
+18 RUNNING workflows (2.2%)
+14 FIZZLED workflows (1.7%)
+405 READY workflows (48.6%)
+397 COMPLETED workflows (47.6%)
+834 workflows in total
+```
+
+#### Hark VW
+
+2346 basically DONE:
+
+```
+u'COMPLETED': 2181, u'FIZZLED': 75, u'PAUSED': 40, u'DEFUSED': 23, u'WAITING': 17, u'RESERVED': 10
+```
+
+
 ### 2017-05-15
 
 - started running 666 USC 4-layer structures
