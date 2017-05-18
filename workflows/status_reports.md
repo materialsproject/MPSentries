@@ -1,5 +1,7 @@
 ### 2017-05-18
 
+- 5291 VASP db insertion tasks ready to run
+
 #### USC 4-layers
 
 ```
