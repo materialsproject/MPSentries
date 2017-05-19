@@ -2,6 +2,7 @@
 
 - 576/834 USC compounds COMPLETED
 - still 5290 VASP db insertion tasks ready to run
+- 195 CNGMD Nitrides (Shyam)
 
 ### 2017-05-18
 
