@@ -1,3 +1,8 @@
+### 2017-05-19
+
+- 576/834 USC compounds COMPLETED
+- still 5290 VASP db insertion tasks ready to run
+
 ### 2017-05-18
 
 - 5291 VASP db insertion tasks ready to run
