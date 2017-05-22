@@ -1,3 +1,8 @@
+### 2017-05-21
+
+- 179/195 CNGMD Nitrides COMPLETED
+- 566/666 USC 4-layers COMPLETED
+
 ### 2017-05-19
 
 - 576/834 USC compounds COMPLETED
