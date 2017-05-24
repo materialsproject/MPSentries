@@ -1,12 +1,12 @@
 ### 2017-05-24
 
-- 61/666 USC 4-layers RUNNING
-- 11/195 CNGMD Nitrides RUNNING
 - 760 new Hark VW compounds ("solid solution oxide")
-- still 5293 VASP db insertion tasks to run
 - spending most time on duplicate checking again!?  
   -> DEFUSED 4 MAGICS workflows due to >20 nodes (1847025, 1847661, 1848485, 1848757)  
   -> DEFUSED 5 CNGMD Nitrides workflows due to >20 nodes (1870877, 1870881, 1871061, 1871293, 1871305)
+- 57/666 USC 4-layers RUNNING
+- 6/195 CNGMD Nitrides RUNNING
+- still 5293 VASP db insertion tasks to run
 
 ### 2017-05-21
 
