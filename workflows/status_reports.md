@@ -1,3 +1,11 @@
+### 2017-05-24
+
+- 61/666 USC 4-layers RUNNING
+- 11/195 CNGMD Nitrides RUNNING
+- 760 new Hark VW compounds ("solid solution oxide")
+- still 5293 VASP db insertion tasks to run
+- spending most time on duplicate checking again!?
+
 ### 2017-05-21
 
 - 179/195 CNGMD Nitrides COMPLETED
