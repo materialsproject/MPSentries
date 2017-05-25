@@ -1,3 +1,10 @@
+### 2017-05-25
+
+- solid solution oxide (Hark VW): 499/760 COMPLETED, 35 FIZZLED
+- MAGICS: 780/834 COMPLETED, 23 FIZZLED/DEFUSED
+- CNGMD Nitrides: 185/195 COMPLETED, 10 FIZZLED/DEFUSED -> DONE
+- 5224 VASP DB insertion tasks to run
+
 ### 2017-05-24
 
 - 760 new Hark VW compounds ("solid solution oxide")
