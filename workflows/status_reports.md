@@ -1,8 +1,9 @@
 ### 2017-05-30
 
 - solid solution oxide (Hark VW): 1814/2212 COMPLETED, 95 FIZZLED/DEFUSED, 266 READY  
-  -> submitted 300+800 "intermetallics" (run until we officially switch off)
-- MAGICS: 780/834 COMPLETED, 23 FIZZLED/DEFUSED
+- queued 303 "intermetallic" Hark VW structures
+- MAGICS: 780/834 COMPLETED, 23 FIZZLED/DEFUSED  
+  `{u'COMPLETED': 805, u'FIZZLED': 19, u'RESERVED': 4, u'WAITING': 3, u'DEFUSED': 3}`
 - 5226 VASP DB insertion tasks to run
 
 ### 2017-05-25
