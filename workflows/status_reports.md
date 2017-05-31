@@ -1,3 +1,16 @@
+### 2017-05-31
+
+- 5224 VASP DB insertion tasks to run
+
+#### Hark VW
+
+- solid solution oxide:  
+  defused 1890875, 1890937, 1911117, 1918487, 1919245, 1919303, 1919959  
+  `{u'COMPLETED': 1870, u'READY': 242, u'FIZZLED': 59, u'WAITING': 26, u'RESERVED': 10, u'DEFUSED': 5}`
+- 303 intermetallic Hark VW structures: 78 COMPLETED, 33 FIZZLED  
+  defused 1928531, 1928641  
+  `{u'READY': 175, u'COMPLETED': 98, u'FIZZLED': 25, u'WAITING': 3, 'DEFUSED': 1, u'RUNNING': 1}`
+
 ### 2017-05-30
 
 - solid solution oxide (Hark VW): 1814/2212 COMPLETED, 95 FIZZLED/DEFUSED, 266 READY  
