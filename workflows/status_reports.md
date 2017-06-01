@@ -1,6 +1,7 @@
 ### 2017-06-01
 
-- solid solution oxide: `{u'COMPLETED': 2044, u'FIZZLED': 72, u'WAITING': 54, u'READY': 27, u'RESERVED': 10, u'DEFUSED': 5}`
+- solid solution oxide:  
+  `{u'COMPLETED': 2044, u'FIZZLED': 72, u'WAITING': 54, u'READY': 27, u'RESERVED': 10, u'DEFUSED': 5}`
 - intermetallics: defused 1928641, 1929333  
   `{u'COMPLETED': 228, u'FIZZLED': 59, u'READY': 14, u'DEFUSED': 2}`
 - 5224 VASP DB insertion tasks to run
