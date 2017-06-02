@@ -1,3 +1,8 @@
+### 2017-06-02
+
+- last batch of ~5k VASP DB insertion tasks COMPLETED  
+  -> 11463/61402 uniform tasks have projections
+
 ### 2017-06-01
 
 - solid solution oxide:  
