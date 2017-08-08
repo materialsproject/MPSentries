@@ -8,3 +8,8 @@ cp my_launchpad_template.yaml my_launchpad.yaml
 # get read db credentials from Patrick Huck and save in my_launchpad.yaml
 jupyter notebook
 ```
+
+
+http://www.nersc.gov/users/data-analytics/data-analytics/python/anaconda-python/
+
+https://ipython.readthedocs.io/en/latest/install/kernel_install.html
