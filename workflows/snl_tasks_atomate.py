@@ -10,31 +10,11 @@ from datetime import date
 
 PARSE_TASKS = False
 RESET = False
+ADD_SNLS = False
+
 GARDEN = '/global/projecta/projectdirs/matgen/garden/'
 nr_good_mpids, nr_bad_mpids = 40000, 50
 nproc = 10
-
-snl_db_config_path = os.path.join('snl_db.yaml')
-snl_db_config_file = open(snl_db_config_path, 'r')
-snl_db_config = yaml.load(snl_db_config_file)
-snl_db_conn = MongoClient(snl_db_config['host'], snl_db_config['port'], j=False, connect=False)
-snl_db = snl_db_conn[snl_db_config['db']]
-snl_db.authenticate(snl_db_config['username'], snl_db_config['password'])
-print('# SNLs:\t', snl_db.snl.count())
-
-materials_prod_config_path = os.path.join('materials_db_prod.yaml')
-materials_prod_config_file = open(materials_prod_config_path, 'r')
-config = yaml.load(materials_prod_config_file)
-conn = MongoClient(config['host'], config['port'], j=False, connect=False)
-db_jp = conn[config['db']]
-db_jp.authenticate(config['user_name'], config['password'])
-print('# materials:\t', db_jp.materials.count())
-
-vasp_config = json.load(open('tasks_db.json'))
-vasp_conn = MongoClient(vasp_config['host'], vasp_config['port'], j=False, connect=False)
-db_vasp = vasp_conn[vasp_config['database']]
-db_vasp.authenticate(vasp_config['readonly_user'], vasp_config['readonly_password'])
-print('# MP tasks:\t', db_vasp.tasks.count())
 
 with open('snl_tasks_atomate.json', 'r') as f:
   data = json.load(f)
@@ -95,12 +75,26 @@ if merge_files:
 
 if PARSE_TASKS:
 
+  materials_prod_config_path = os.path.join('materials_db_prod.yaml')
+  materials_prod_config_file = open(materials_prod_config_path, 'r')
+  config = yaml.load(materials_prod_config_file)
+  conn = MongoClient(config['host'], config['port'], j=False, connect=False)
+  db_jp = conn[config['db']]
+  db_jp.authenticate(config['user_name'], config['password'])
+  print('# materials:\t', db_jp.materials.count())
+
   with open('launch_dirs.json', 'r') as f:
     launch_dirs_log = json.load(f)
 
   query = {} #{'has_bandstructure': True, 'dos': {'$exists': 1}}
   mpids = db_jp.materials.find(query).distinct('task_id')
   print('PARSE - # of mpids:', len(mpids))
+
+  vasp_config = json.load(open('tasks_db.json'))
+  vasp_conn = MongoClient(vasp_config['host'], vasp_config['port'], j=False, connect=False)
+  db_vasp = vasp_conn[vasp_config['database']]
+  db_vasp.authenticate(vasp_config['readonly_user'], vasp_config['readonly_password'])
+  print('# MP tasks:\t', db_vasp.tasks.count())
 
   def func(docs, d):
       name = current_process().name
@@ -156,13 +150,19 @@ if PARSE_TASKS:
 
 else:
 
-  db_config_atomate = json.load(open('db_atomate.json'))
-  db_conn_atomate = MongoClient(db_config_atomate['host'], db_config_atomate['port'], j=False, connect=False)
-  db_atomate = db_conn_atomate[db_config_atomate['database']]
-  db_atomate.authenticate(db_config_atomate['admin_user'], db_config_atomate['admin_password'])
-  print('# of atomate tasks:', db_atomate.tasks.count())
-
-  if db_atomate.snls.count() == 0:
+  if ADD_SNLS:
+    db_config_atomate = json.load(open('db_atomate.json'))
+    db_conn_atomate = MongoClient(db_config_atomate['host'], db_config_atomate['port'], j=False, connect=False)
+    db_atomate = db_conn_atomate[db_config_atomate['database']]
+    db_atomate.authenticate(db_config_atomate['admin_user'], db_config_atomate['admin_password'])
+    print('# of atomate tasks:', db_atomate.tasks.count())
+    snl_db_config_path = os.path.join('snl_db.yaml')
+    snl_db_config_file = open(snl_db_config_path, 'r')
+    snl_db_config = yaml.load(snl_db_config_file)
+    snl_db_conn = MongoClient(snl_db_config['host'], snl_db_config['port'], j=False, connect=False)
+    snl_db = snl_db_conn[snl_db_config['db']]
+    snl_db.authenticate(snl_db_config['username'], snl_db_config['password'])
+    print('# SNLs:\t', snl_db.snl.count())
     nr_all_mpids = nr_good_mpids + nr_bad_mpids
     good_snl_ids = [data[mpid]['snl_id'] for mpid in good_mpids[:nr_good_mpids]] # all with output dir
     bad_snl_ids = [data[mpid]['snl_id'] for mpid in bad_mpids[:nr_bad_mpids]] # all without output dir
@@ -204,6 +204,9 @@ else:
 
   print('check already existing tasks ...')
   drone = VaspDrone(parse_dos=True)
+  if not os.path.exists('db_atomate.json'):
+    print('you need credentials for the atomate task DB in db_atomate.json!')
+    sys.exit(0)
   mmdb = VaspCalcDb.from_db_file('db_atomate.json', admin=True)
   if RESET:
     print('reseting mmdb ...')
