@@ -12,7 +12,7 @@
 module unload python
 module unload virtualenv
 module load python/3.4-anaconda
-module unload intel
+#module unload intel
 source activate /global/u1/h/huck/ph_atomate
 
 srun -n 1 python snl_tasks_atomate.py

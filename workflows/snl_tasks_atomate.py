@@ -1,4 +1,4 @@
-import json, yaml, os, sys
+import json, yaml, os, sys, tarfile, shutil
 from pymongo import MongoClient
 from atomate.vasp.drones import VaspDrone
 from atomate.vasp.database import VaspCalcDb
@@ -13,7 +13,6 @@ RESET = False
 ADD_SNLS = False
 
 GARDEN = '/global/projecta/projectdirs/matgen/garden/'
-nr_good_mpids, nr_bad_mpids = 40000, 50
 nproc = 10
 
 with open('snl_tasks_atomate.json', 'r') as f:
@@ -31,7 +30,7 @@ for i in range(nproc):
 with open('snl_tasks_atomate.json', 'w') as f:
   json.dump(data, f)
 
-out = os.path.join('old_output', str(date.today()))
+out = os.path.join('old_output2', str(date.today()))
 if not os.path.exists(out):
   os.mkdir(out)
 
@@ -43,10 +42,10 @@ for i in range(nproc):
 print('# mp-ids:\t', len(data))
 
 good_mpids = [mpid for mpid, d in data.items() if 'error' not in d]
-print('# good mp-ids:\t', len(good_mpids))
-bad_mpids = [mpid for mpid, d in data.items() if 'error' in d]
-print('# bad mp-ids:\t', len(bad_mpids))
+all_tasks_mpids = [mpid for mpid, d in data.items() if 'all_tasks_found' in d and d['all_tasks_found']]
+print('# good mp-ids:\t', len(good_mpids), ";", len(all_tasks_mpids), 'w/ all tasks')
 
+bad_mpids = [mpid for mpid, d in data.items() if 'error' in d]
 counter_except = Counter()
 counter_error = Counter()
 nr_exception_mpids = 0
@@ -66,9 +65,8 @@ for mpid, d in data.items():
       for task_id, exception in d['exceptions'].items():
         counter_except[exception[:20]] += 1
 
-print(counter_error)
-print('# mp-ids w/ exceptions:', nr_exception_mpids)
-print(counter_except.most_common(2))
+print('# bad mp-ids:\t', len(bad_mpids), counter_error)
+print('# mp-ids w/ exceptions:', nr_exception_mpids, counter_except.most_common(2))
 
 if merge_files:
   sys.exit(0)
@@ -96,6 +94,12 @@ if PARSE_TASKS:
   db_vasp.authenticate(vasp_config['readonly_user'], vasp_config['readonly_password'])
   print('# MP tasks:\t', db_vasp.tasks.count())
 
+  vasp_mvc_config = json.load(open('ml_prod.json'))
+  vasp_mvc_conn = MongoClient(vasp_mvc_config['host'], vasp_mvc_config['port'], j=False, connect=False)
+  db_vasp_mvc = vasp_mvc_conn[vasp_mvc_config['database']]
+  db_vasp_mvc.authenticate(vasp_mvc_config['readonly_user'], vasp_mvc_config['readonly_password'])
+  print('# mvc tasks:\t', db_vasp_mvc.tasks.count())
+
   def func(docs, d):
       name = current_process().name
       print(name, 'starting')
@@ -114,8 +118,13 @@ if PARSE_TASKS:
                   d[mpid]['error'] = '{}: found {} tasks'.format(task_id, len(tasks))
                   continue
               elif not tasks:
-                  d[mpid]['error'] = '{}: no task found'.format(task_id)
-                  continue
+                  tasks = list(db_vasp_mvc.tasks.find({'task_id': task_id}, {'dir_name': 1, '_id': 0}))
+                  if len(tasks) > 1:
+                      d[mpid]['error'] = '{}: found {} tasks'.format(task_id, len(tasks))
+                      continue
+                  elif not tasks:
+                      d[mpid]['error'] = '{}: no task found'.format(task_id)
+                      continue
               dir_name = tasks[0]['dir_name']
               launch_dir = os.path.join(GARDEN, dir_name)
               if not os.path.exists(launch_dir):
@@ -134,6 +143,7 @@ if PARSE_TASKS:
             
   mpids = [mpid for mpid in mpids if mpid not in data or 'error' in data[mpid]] # skip error free
   print('PARSE - # of mpids:', len(mpids))
+
   jobs = []
   n = int(len(mpids)/nproc)+1
   chunks = [mpids[i:i + n] for i in range(0, len(mpids), n)]
@@ -163,6 +173,7 @@ else:
     snl_db = snl_db_conn[snl_db_config['db']]
     snl_db.authenticate(snl_db_config['username'], snl_db_config['password'])
     print('# SNLs:\t', snl_db.snl.count())
+    nr_good_mpids, nr_bad_mpids = len(good_mpids), 50
     nr_all_mpids = nr_good_mpids + nr_bad_mpids
     good_snl_ids = [data[mpid]['snl_id'] for mpid in good_mpids[:nr_good_mpids]] # all with output dir
     bad_snl_ids = [data[mpid]['snl_id'] for mpid in bad_mpids[:nr_bad_mpids]] # all without output dir
@@ -172,13 +183,24 @@ else:
       print('{} mpids but {} SNLs!'.format(nr_all_mpids, all_snls.count()))
     print(db_atomate.snls.insert_many(all_snls))
 
+  def get_subdir_and_files(members, subdir):
+    found_subdir = False
+    for tarinfo in members:
+      is_subdir = tarinfo.name.startswith(subdir)
+      if is_subdir:
+        yield tarinfo
+        if not found_subdir:
+          found_subdir = True
+      elif found_subdir:
+        raise StopIteration
+
   def func(mpids, d):
-    drone = VaspDrone(parse_dos=True)
+    drone = VaspDrone(parse_dos="auto")
     name = current_process().name
     print(name, 'starting')
     mmdb = VaspCalcDb.from_db_file('db_atomate.json', admin=True)
     for idx, mpid in enumerate(mpids):
-      if idx and not idx%250:
+      if idx and not idx%50:
         print(name, idx, '...')
         with open('snl_tasks_atomate_{}.json'.format(name), 'w') as f:
           json.dump(d, f)
@@ -189,21 +211,45 @@ else:
           print('{} mpid = {}: {} tasks'.format(name, mpid, len(tasks)))
         if task_doc:
           continue
-        print(name, 'launch_dir =',launch_dir)
+        print(name, 'launch_dir =', launch_dir)
         try:
-          task_doc = drone.assimilate(launch_dir)
+
+          subdir = None
+          if not os.path.exists(launch_dir):
+            tar_dir, block_idx = [], None
+            launch_dir_split = launch_dir.split(os.sep)
+            for ix, x in enumerate(launch_dir_split):
+              tar_dir.append(x)
+              if x.startswith('block_'):
+                block_idx = ix
+                break
+            tarfile_path = os.sep.join(tar_dir) + '.tar.gz'
+            subdir = os.sep.join(launch_dir_split[block_idx:])
+            with tarfile.open(tarfile_path, "r|gz") as tar:
+              print('extracting', subdir, '...')
+              tar.extractall(members=get_subdir_and_files(tar, subdir))
+              print('DONE')
+
+          task_doc = drone.assimilate(launch_dir if subdir is None else subdir)
           task_doc['task_id'] = task_id
+          if subdir is not None: # use untar'ed location
+            task_doc['dir_name'] = launch_dir
           mmdb.insert_task(task_doc, parse_dos=True, parse_bs=True)
+
         except Exception as ex:
+          print('saving exception ...')
           if 'exceptions' not in d[mpid]:
             d[mpid]['exceptions'] = {}
           d[mpid]['exceptions'][task_id] = str(ex)
+          print(str(ex))
+
+        if subdir is not None:
+          shutil.rmtree(subdir)
     with open('snl_tasks_atomate_{}.json'.format(name), 'w') as f:
       json.dump(d, f)
     print(name, 'processed', len(mpids), 'mpids')
 
   print('check already existing tasks ...')
-  drone = VaspDrone(parse_dos=True)
   if not os.path.exists('db_atomate.json'):
     print('you need credentials for the atomate task DB in db_atomate.json!')
     sys.exit(0)
@@ -211,30 +257,62 @@ else:
   if RESET:
     print('reseting mmdb ...')
     mmdb.reset()
+  check_good_mpids = [
+      mpid for mpid in good_mpids
+      if 'all_tasks_found' not in data[mpid] or not data[mpid]['all_tasks_found']
+  ]
+  print(len(check_good_mpids), 'mpids to check ...')
+
+  #func(['mp-7066'], {'mp-7066': data['mp-7066']})
+  #sys.exit(0)
+
   l = []
-  for mpid in good_mpids[:nr_good_mpids]:
+  for idx,mpid in enumerate(check_good_mpids):
+    if idx and not idx%5000:
+      print(idx, '...')
     tasks = data[mpid]['tasks']
     all_tasks_found = True
     for idx, (task_id, launch_dir) in enumerate(tasks.items()):
-      if 'exceptions' in data[mpid] and data[mpid]['exceptions'] \
-	  and not data[mpid]['exceptions'].get(task_id, '').startswith('[Errno 116]'):
-        continue
-      if 'exceptions' in data[mpid]:
-        data[mpid].pop('exceptions') # reset for Errno 116
+      if 'exceptions' in data[mpid] and data[mpid]['exceptions']:
+        exc = data[mpid]['exceptions'].get(task_id, '')
+        if exc:
+          if exc.startswith('[Errno 116]') or exc.startswith('[Errno 2]') or exc.startswith('No valid dos data'):
+            data[mpid]['exceptions'].pop(task_id) # reset for Errno 116/2
+          all_tasks_found = False
+          continue
       task_doc = mmdb.collection.find_one({'task_id': task_id}, {'_id': 0, 'task_id': 1})
-      if task_doc:
-        continue
-      all_tasks_found = False
-      break
-    if not all_tasks_found:
-      l.append(mpid)
+      if not task_doc:
+        all_tasks_found = False
+        break
+    data[mpid]['all_tasks_found'] = all_tasks_found
+    if all_tasks_found:
+      if 'exceptions' in data[mpid]:
+        data[mpid].pop('exceptions')
+      if 'error' in data[mpid]:
+        data[mpid].pop('error')
+    else:
+      if not 'exceptions' in data[mpid]:
+        tasks = data[mpid]['tasks']
+        launch_dirs_ok = True
+        for idx, (task_id, launch_dir) in enumerate(tasks.items()):
+          if not os.path.exists(launch_dir):
+            launch_dirs_ok = False
+            break # skip tar'ed blocks
+        if launch_dirs_ok:
+          l.append(mpid)
+      if 'exceptions' in data[mpid] and not data[mpid]['exceptions']:
+        data[mpid].pop('exceptions')
 
   if not l:
     print('nothing to process')
     sys.exit(0)
 
   print(len(l), 'mpids to process')
+  with open('snl_tasks_atomate.json', 'w') as f:
+    json.dump(data, f)
 
+  #sys.exit(0)
+  l = l[:10000]
   jobs = []
   n = int(len(l)/nproc)+1
   chunks = [l[i:i + n] for i in range(0, len(l), n)]
