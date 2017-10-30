@@ -2,6 +2,7 @@ import json, yaml, os, sys, tarfile, shutil
 from pymongo import MongoClient
 from atomate.vasp.drones import VaspDrone
 from atomate.vasp.database import VaspCalcDb
+from pymatgen.io.vasp.inputs import Poscar
 from collections import OrderedDict
 from multiprocessing import Process, current_process
 from itertools import repeat
@@ -281,9 +282,17 @@ else:
           all_tasks_found = False
           continue
       task_doc = mmdb.collection.find_one({'task_id': task_id}, {'_id': 0, 'task_id': 1})
+      #task_doc = mmdb.collection.find_one({'task_id': task_id}, {'_id': 0, 'task_id': 1, 'orig_inputs.poscar': 1, 'chemsys': 1})
       if not task_doc:
         all_tasks_found = False
         break
+      #poscar = Poscar.from_dict(task_doc["orig_inputs"]["poscar"])
+      #chemsys = "-".join(sorted(map(str, poscar.structure.composition.elements)))
+      #if task_doc["chemsys"] != chemsys:
+      #  all_tasks_found = False
+      #  mmdb.collection.delete_one({'task_id': task_id})
+      #  print('deleted task_id', task_id, 'b/c', task_doc["chemsys"], '!=', chemsys)
+      #  break
     data[mpid]['all_tasks_found'] = all_tasks_found
     if all_tasks_found:
       if 'exceptions' in data[mpid]:
