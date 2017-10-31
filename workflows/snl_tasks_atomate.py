@@ -159,9 +159,8 @@ if PARSE_TASKS:
     jobs.append(p)
     p.start()
 
-else:
+elif ADD_SNLS:
 
-  if ADD_SNLS:
     db_config_atomate = json.load(open('db_atomate.json'))
     db_conn_atomate = MongoClient(db_config_atomate['host'], db_config_atomate['port'], j=False, connect=False)
     db_atomate = db_conn_atomate[db_config_atomate['database']]
@@ -174,7 +173,7 @@ else:
     snl_db = snl_db_conn[snl_db_config['db']]
     snl_db.authenticate(snl_db_config['username'], snl_db_config['password'])
     print('# SNLs:\t', snl_db.snl.count())
-    nr_good_mpids, nr_bad_mpids = len(good_mpids), 50
+    nr_good_mpids, nr_bad_mpids = 100, 50
     nr_all_mpids = nr_good_mpids + nr_bad_mpids
     good_snl_ids = [data[mpid]['snl_id'] for mpid in good_mpids[:nr_good_mpids]] # all with output dir
     bad_snl_ids = [data[mpid]['snl_id'] for mpid in bad_mpids[:nr_bad_mpids]] # all without output dir
@@ -183,6 +182,8 @@ else:
     if all_snls.count() != nr_all_mpids:
       print('{} mpids but {} SNLs!'.format(nr_all_mpids, all_snls.count()))
     print(db_atomate.snls.insert_many(all_snls))
+
+else:
 
   def get_subdir_and_files(members, subdir):
     found_subdir = False
